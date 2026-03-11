@@ -2,43 +2,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Ejercicio 1 */
 Nodo* crearNodo(int valor){
-    // TODO(1): usar malloc
-    return NULL;
+    Nodo* n = (Nodo*)malloc(sizeof(Nodo));
+    if(n){
+        n->dato = valor;
+        n->siguiente = NULL;
+    }
+    return n;
 }
 
-/* Ejercicio 2 */
 Nodo* crearArregloNodos(int n){
-    // TODO(2): usar calloc
-    return NULL;
+    Nodo* arreglo = (Nodo*)calloc(n, sizeof(Nodo));
+    if(arreglo){
+        for(int i = 0; i < n; i++) arreglo[i].dato = i;
+    }
+    return arreglo;
 }
 
-/* Ejercicio 3 */
 Nodo* agregarNodo(Nodo* arreglo, int* n, int valor){
-    // TODO(3): usar realloc
-    return NULL;
+    int nuevoTam = (*n) + 1;
+    Nodo* temp = (Nodo*)realloc(arreglo, nuevoTam * sizeof(Nodo));
+    if(temp){
+        temp[*n].dato = valor;
+        temp[*n].siguiente = NULL;
+        *n = nuevoTam;
+        return temp;
+    }
+    return arreglo;
 }
 
-/* Ejercicio 4 */
 void liberarNodos(Nodo* arreglo, int n){
-    // TODO (4): liberar memoria
+    if(arreglo) free(arreglo);
 }
 
-/* Ejercicio 5 */
 Nodo* construirTresNodos(){
-    // TODO(5): crear 3 nodos enlazados manualmente
-    return NULL;
+    Nodo* n1 = crearNodo(10);
+    Nodo* n2 = crearNodo(20);
+    Nodo* n3 = crearNodo(30);
+    if(n1 && n2 && n3){
+        n1->siguiente = n2;
+        n2->siguiente = n3;
+    }
+    return n1;
 }
 
-/* Ejercicio 6 */
 int contarNodos(Nodo* inicio){
-    // TODO(6): recorrer nodos
-    return 0;
+    int contador = 0;
+    Nodo* actual = inicio;
+    while(actual && actual->siguiente){
+        contador++;
+        actual = actual->siguiente;
+    }
+    return contador;
 }
 
-/* Ejercicio 7 */
 Nodo* crearNodosPorEntrada(){
-    // TODO(7): leer números y crear nodos dinámicamente
-    return NULL;
+    int n1_val, n2_val;
+    printf("Introduce valor 1: "); scanf("%d", &n1_val);
+    printf("Introduce valor 2: "); scanf("%d", &n2_val);
+    Nodo* n1 = crearNodo(n1_val);
+    Nodo* n2 = crearNodo(n2_val);
+    if(n1) n1->siguiente = n2;
+    return n1;
 }
