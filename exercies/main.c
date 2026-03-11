@@ -1,37 +1,32 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "nodo.h"
 
 int main() {
     printf("===== Repo de ejercicios de nodos =====\n");
 
-    // Ejercicio 1
     Nodo* n1 = crearNodo(10);
     if (n1) printf("Nodo creado con dato: %d\n", n1->dato);
 
-    // Ejercicio 2
-    Nodo* arreglo = crearArregloNodos(5);
-    // TODO(1): imprimir arreglo
-
-    // Ejercicio 3
     int tam = 5;
-    arreglo = agregarNodo(arreglo, &tam, 99);
-    // TODO(2): imprimir arreglo actualizado
+    Nodo* arreglo = crearArregloNodos(tam);
+    printf("Arreglo calloc: ");
+    for(int i=0; i<tam; i++) printf("%d ", arreglo[i].dato);
+    printf("\n");
 
-    // Ejercicio 4
+    arreglo = agregarNodo(arreglo, &tam, 99);
+    printf("Arreglo realloc: ");
+    for(int i=0; i<tam; i++) printf("%d ", arreglo[i].dato);
+    printf("\n");
+
     liberarNodos(arreglo, tam);
     liberarNodos(n1, 1);
 
-    // Ejercicio 5
     Nodo* inicio = construirTresNodos();
-    // TODO(3): imprimir nodos
+    
+    printf("Total conexiones: %d\n", contarNodos(inicio));
 
-    // Ejercicio 6
-    int total = contarNodos(inicio);
-    printf("Total de nodos: %d\n", total);
-
-    // Ejercicio 7
     Nodo* desdeEntrada = crearNodosPorEntrada();
-    // TODO(4): imprimir nodos
 
     return 0;
 }
